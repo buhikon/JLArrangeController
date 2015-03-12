@@ -41,6 +41,7 @@ Just use it like below:
 
 ```
 
+[![](https://raw.github.com/buhikon/JLArrangeController/master/demo.gif)](https://raw.github.com/buhikon/JLArrangeController/master/demo.gif)
 
 
 ## License
