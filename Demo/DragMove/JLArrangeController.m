@@ -4,7 +4,8 @@
 //
 //  Created by Joey L. on 3/12/15.
 //  Copyright 2015 Joey L. All rights reserved.
-//
+//  https://github.com/buhikon/JLArrangeController
+//  v 1.0
 
 #import "JLArrangeController.h"
 

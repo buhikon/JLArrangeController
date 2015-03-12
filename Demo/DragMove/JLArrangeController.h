@@ -4,6 +4,8 @@
 //
 //  Created by Joey L. on 3/12/15.
 //  Copyright 2015 Joey L. All rights reserved.
+//  https://github.com/buhikon/JLArrangeController
+//  v 1.0
 //
 // [사용법]
 // 1. UIView(superview) 생성 후, 안에 UIView를 여러개 생성해 놓는다.
