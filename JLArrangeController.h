@@ -23,7 +23,10 @@
 
 @protocol JLArrangeControllerDelegate
 
-- (void)arrangeControllerDidRearrangeViews:(NSArray *)arrangeViews;
+- (void)arrangeControllerDidRearrangeViews:(NSArray *)rearrangedViews
+                             originalViews:(NSArray *)originalViews
+                                 fromIndex:(NSInteger)fromIndex
+                                   toIndex:(NSInteger)toIndex;
 
 @end
 
@@ -33,5 +36,7 @@
 @property (weak, nonatomic) id<JLArrangeControllerDelegate> delegate; // weak reference
 
 - (instancetype)initWithArrangeViews:(NSArray *)arrangeViews delegate:(id<JLArrangeControllerDelegate>)delegate;
+
+- (void)updateArrangeViews:(NSArray *)arrangeViews;
 
 @end

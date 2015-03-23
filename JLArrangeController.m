@@ -52,18 +52,41 @@
     return _borderOfArrangeView;
 }
 
+
 #pragma mark =
 
 - (instancetype)initWithArrangeViews:(NSArray *)arrangeViews delegate:(id<JLArrangeControllerDelegate>)delegate
 {
     self = [super init];
     if (self) {
-        
-        // (소스 가독성을 위해 for문을 여러번 돌림)
-        
+        self.delegate = delegate;
+        [self updateArrangeViews:arrangeViews];
+    }
+    return self;
+}
+
+#pragma mark - public methods
+
+- (void)updateArrangeViews:(NSArray *)arrangeViews
+{
+    // clear
+    for(UIView *arrangeView in self.arrangeViews) {
+        for(UIGestureRecognizer *gestureRecognizer in arrangeView.gestureRecognizers) {
+            if([[gestureRecognizer class] isSubclassOfClass:[UILongPressGestureRecognizer class]]) {
+                [arrangeView removeGestureRecognizer:gestureRecognizer];
+            }
+        }
+    }
+    [self.arrangeViews removeAllObjects];
+    [self.originOfArrangeView removeAllObjects];
+    [self.borderOfArrangeView removeAllObjects];
+    
+    
+    // start
+    if(arrangeViews.count > 0) {
         [self.arrangeViews addObjectsFromArray:arrangeViews];
         self.arrangeViewsOriginal = [NSArray arrayWithArray:arrangeViews];
-        self.delegate = delegate;
+        
         
         // sort
         [self.arrangeViews sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
@@ -100,11 +123,7 @@
             UILongPressGestureRecognizer *longGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(arrangeViewDidMove:)];
             [arrangeView addGestureRecognizer:longGestureRecognizer];
         }
-        
-
-
     }
-    return self;
 }
 
 #pragma mark - private methods
@@ -206,6 +225,7 @@
     switch (longGestureRecognizer.state) {
         case UIGestureRecognizerStateBegan:
         {
+            [arrangeView.superview bringSubviewToFront:arrangeView];
             [self animateStartForView:arrangeView];
             _startIndex = index;
             _currentIndex = index;
@@ -235,7 +255,11 @@
             
             // 순서 변경이 되었으면 delegate에 통보하고, 판별 기준값(self.arrangeViewsOriginal)을 리셋한다.
             if([self wasArrangeViewMoved]) {
-                [self.delegate arrangeControllerDidRearrangeViews:self.arrangeViews];
+                [self.delegate arrangeControllerDidRearrangeViews:self.arrangeViews
+                                                    originalViews:self.arrangeViewsOriginal
+                                                        fromIndex:_startIndex
+                                                          toIndex:_currentIndex];
+                
                 self.arrangeViewsOriginal = [NSArray arrayWithArray:self.arrangeViews]; //
             }
             break;

@@ -36,11 +36,17 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.0" green="0.74117647060000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
-                                    <view contentMode="scaleToFill" id="ZYc-7C-Eor">
-                                        <rect key="frame" x="255" y="45" width="50" height="50"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6Tp-Zz-QPg">
+                                        <rect key="frame" x="255" y="44" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.0" green="0.74117647060000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    </view>
+                                        <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="buttonTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="RWL-XW-usY"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -52,7 +58,7 @@
                         <outletCollection property="arrangeViews" destination="KKI-ht-7y3" id="W8h-nX-v1P"/>
                         <outletCollection property="arrangeViews" destination="qGy-oa-sGf" id="hJy-o6-JLX"/>
                         <outletCollection property="arrangeViews" destination="TXQ-Cx-E10" id="0Ur-iS-xX1"/>
-                        <outletCollection property="arrangeViews" destination="ZYc-7C-Eor" id="UCM-w4-RPh"/>
+                        <outletCollection property="arrangeViews" destination="6Tp-Zz-QPg" id="4ug-Wg-F97"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

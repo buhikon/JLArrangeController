@@ -32,7 +32,10 @@ Just use it like below:
 
 #pragma mark - JLArrangeControllerDelegate
 
-- (void)arrangeControllerDidRearrangeViews:(NSArray *)arrangeViews
+- (void)arrangeControllerDidRearrangeViews:(NSArray *)rearrangedViews
+                             originalViews:(NSArray *)originalViews
+                                 fromIndex:(NSInteger)fromIndex
+                                   toIndex:(NSInteger)toIndex
 {
     NSLog(@"did change!");
 }

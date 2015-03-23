@@ -24,10 +24,16 @@
     [super viewDidLoad];
     self.arrangeController = [[JLArrangeController alloc] initWithArrangeViews:self.arrangeViews delegate:self];
 }
+- (IBAction)buttonTapped:(id)sender {
+    NSLog(@"button Tapped!");
+}
 
 #pragma mark - JLArrangeControllerDelegate
 
-- (void)arrangeControllerDidRearrangeViews:(NSArray *)arrangeViews
+- (void)arrangeControllerDidRearrangeViews:(NSArray *)rearrangedViews
+                             originalViews:(NSArray *)originalViews
+                                 fromIndex:(NSInteger)fromIndex
+                                   toIndex:(NSInteger)toIndex
 {
     NSLog(@"did change!");
 }

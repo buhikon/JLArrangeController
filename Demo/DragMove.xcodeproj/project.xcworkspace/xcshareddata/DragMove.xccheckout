@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C7E28B35-3208-43B3-833E-360712517F5D</string>
+	<key>IDESourceControlProjectName</key>
+	<string>DragMove</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D71AFCDED110F9542C5BD5298ADE7EE1B0C8EE70</key>
+		<string>https://github.com/buhikon/JLArrangeController.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Demo/DragMove.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D71AFCDED110F9542C5BD5298ADE7EE1B0C8EE70</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/buhikon/JLArrangeController.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D71AFCDED110F9542C5BD5298ADE7EE1B0C8EE70</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D71AFCDED110F9542C5BD5298ADE7EE1B0C8EE70</string>
+			<key>IDESourceControlWCCName</key>
+			<string>JLArrangeController</string>
+		</dict>
+	</array>
+</dict>
+</plist>
