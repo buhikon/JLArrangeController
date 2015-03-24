@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		64CA453D1AC156E50044F4CB /* JLArrangeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CA453A1AC156E50044F4CB /* JLArrangeController.m */; };
+		64CA453E1AC156E50044F4CB /* JLArrangeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CA453A1AC156E50044F4CB /* JLArrangeController.m */; };
+		64CA453F1AC156E50044F4CB /* JLArrangeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CA453C1AC156E50044F4CB /* JLArrangeView.m */; };
+		64CA45401AC156E50044F4CB /* JLArrangeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CA453C1AC156E50044F4CB /* JLArrangeView.m */; };
+		64CA45431AC1571B0044F4CB /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CA45421AC1571B0044F4CB /* MyView.m */; };
+		64CA45441AC1571B0044F4CB /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CA45421AC1571B0044F4CB /* MyView.m */; };
 		64D8340E1AB1154400DBE290 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D8340D1AB1154400DBE290 /* main.m */; };
 		64D834111AB1154400DBE290 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D834101AB1154400DBE290 /* AppDelegate.m */; };
 		64D834141AB1154400DBE290 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D834131AB1154400DBE290 /* ViewController.m */; };
@@ -14,7 +20,6 @@
 		64D834191AB1154400DBE290 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64D834181AB1154400DBE290 /* Images.xcassets */; };
 		64D8341C1AB1154400DBE290 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64D8341A1AB1154400DBE290 /* LaunchScreen.xib */; };
 		64D834281AB1154500DBE290 /* DragMoveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D834271AB1154500DBE290 /* DragMoveTests.m */; };
-		64D834331AB117BB00DBE290 /* JLArrangeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D834321AB117BB00DBE290 /* JLArrangeController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +33,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		64CA45391AC156E50044F4CB /* JLArrangeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLArrangeController.h; sourceTree = "<group>"; };
+		64CA453A1AC156E50044F4CB /* JLArrangeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLArrangeController.m; sourceTree = "<group>"; };
+		64CA453B1AC156E50044F4CB /* JLArrangeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLArrangeView.h; sourceTree = "<group>"; };
+		64CA453C1AC156E50044F4CB /* JLArrangeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLArrangeView.m; sourceTree = "<group>"; };
+		64CA45411AC1571B0044F4CB /* MyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyView.h; sourceTree = "<group>"; };
+		64CA45421AC1571B0044F4CB /* MyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyView.m; sourceTree = "<group>"; };
 		64D834081AB1154400DBE290 /* DragMove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DragMove.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64D8340C1AB1154400DBE290 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64D8340D1AB1154400DBE290 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -41,8 +52,6 @@
 		64D834211AB1154500DBE290 /* DragMoveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DragMoveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		64D834261AB1154500DBE290 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64D834271AB1154500DBE290 /* DragMoveTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DragMoveTests.m; sourceTree = "<group>"; };
-		64D834311AB117BB00DBE290 /* JLArrangeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLArrangeController.h; sourceTree = "<group>"; };
-		64D834321AB117BB00DBE290 /* JLArrangeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLArrangeController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +72,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		64CA45381AC156E50044F4CB /* JLArrangeController */ = {
+			isa = PBXGroup;
+			children = (
+				64CA45391AC156E50044F4CB /* JLArrangeController.h */,
+				64CA453A1AC156E50044F4CB /* JLArrangeController.m */,
+				64CA453B1AC156E50044F4CB /* JLArrangeView.h */,
+				64CA453C1AC156E50044F4CB /* JLArrangeView.m */,
+			);
+			name = JLArrangeController;
+			path = ../../JLArrangeController;
+			sourceTree = "<group>";
+		};
 		64D833FF1AB1154400DBE290 = {
 			isa = PBXGroup;
 			children = (
@@ -84,11 +105,13 @@
 		64D8340A1AB1154400DBE290 /* DragMove */ = {
 			isa = PBXGroup;
 			children = (
-				64D834371AB134F800DBE290 /* JLArrangeController */,
+				64CA45381AC156E50044F4CB /* JLArrangeController */,
 				64D8340F1AB1154400DBE290 /* AppDelegate.h */,
 				64D834101AB1154400DBE290 /* AppDelegate.m */,
 				64D834121AB1154400DBE290 /* ViewController.h */,
 				64D834131AB1154400DBE290 /* ViewController.m */,
+				64CA45411AC1571B0044F4CB /* MyView.h */,
+				64CA45421AC1571B0044F4CB /* MyView.m */,
 				64D834151AB1154400DBE290 /* Main.storyboard */,
 				64D834181AB1154400DBE290 /* Images.xcassets */,
 				64D8341A1AB1154400DBE290 /* LaunchScreen.xib */,
@@ -121,15 +144,6 @@
 				64D834261AB1154500DBE290 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		64D834371AB134F800DBE290 /* JLArrangeController */ = {
-			isa = PBXGroup;
-			children = (
-				64D834311AB117BB00DBE290 /* JLArrangeController.h */,
-				64D834321AB117BB00DBE290 /* JLArrangeController.m */,
-			);
-			name = JLArrangeController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,8 +248,10 @@
 			files = (
 				64D834141AB1154400DBE290 /* ViewController.m in Sources */,
 				64D834111AB1154400DBE290 /* AppDelegate.m in Sources */,
-				64D834331AB117BB00DBE290 /* JLArrangeController.m in Sources */,
+				64CA45431AC1571B0044F4CB /* MyView.m in Sources */,
+				64CA453D1AC156E50044F4CB /* JLArrangeController.m in Sources */,
 				64D8340E1AB1154400DBE290 /* main.m in Sources */,
+				64CA453F1AC156E50044F4CB /* JLArrangeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,7 +259,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64CA45441AC1571B0044F4CB /* MyView.m in Sources */,
+				64CA453E1AC156E50044F4CB /* JLArrangeController.m in Sources */,
 				64D834281AB1154500DBE290 /* DragMoveTests.m in Sources */,
+				64CA45401AC156E50044F4CB /* JLArrangeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,6 +445,7 @@
 				64D8342D1AB1154500DBE290 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		64D8342E1AB1154500DBE290 /* Build configuration list for PBXNativeTarget "DragMoveTests" */ = {
 			isa = XCConfigurationList;
@@ -434,6 +454,7 @@
 				64D834301AB1154500DBE290 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,6 +1,5 @@
 //
 //  JLArrangeController.m
-//  DragMove
 //
 //  Created by Joey L. on 3/12/15.
 //  Copyright 2015 Joey L. All rights reserved.
@@ -8,6 +7,10 @@
 //  v 1.0
 
 #import "JLArrangeController.h"
+
+#if ! __has_feature(objc_arc)
+#error This file must be compiled with ARC. Either turn on ARC for the project or use -fobjc-arc flag
+#endif
 
 @interface JLArrangeController ()
 {
@@ -52,6 +55,19 @@
     return _borderOfArrangeView;
 }
 
+- (void)setEditMode:(BOOL)editMode
+{
+    _editMode = editMode;
+    
+    if(editMode) {
+        [self.delegate arrangeControllerDidStartEditMode];
+        [self startShakeAnimation];
+    }
+    else {
+        [self stopShakeAnimation];
+        [self.delegate arrangeControllerDidFinishEditMode];
+    }
+}
 
 #pragma mark =
 
@@ -60,19 +76,25 @@
     self = [super init];
     if (self) {
         self.delegate = delegate;
-        [self updateArrangeViews:arrangeViews];
+        [self resetArrangeViews:arrangeViews];
     }
     return self;
 }
 
 #pragma mark - public methods
 
-- (void)updateArrangeViews:(NSArray *)arrangeViews
+- (void)resetArrangeViews:(NSArray *)arrangeViews
 {
+    if(![self isValidateArray:arrangeViews]) {
+        NSLog(@"%@, error : items of arrangeViews must subclass of JLArrangeView.", NSStringFromSelector(_cmd));
+        return;
+    }
+    
     // clear
-    for(UIView *arrangeView in self.arrangeViews) {
+    for(JLArrangeView *arrangeView in self.arrangeViews) {
         for(UIGestureRecognizer *gestureRecognizer in arrangeView.gestureRecognizers) {
-            if([[gestureRecognizer class] isSubclassOfClass:[UILongPressGestureRecognizer class]]) {
+            if([[gestureRecognizer class] isSubclassOfClass:[UILongPressGestureRecognizer class]] ||
+               [[gestureRecognizer class] isSubclassOfClass:[UIPanGestureRecognizer class]]) {
                 [arrangeView removeGestureRecognizer:gestureRecognizer];
             }
         }
@@ -102,7 +124,7 @@
         }];
         
         // set origin of arrange view
-        for(UIView *arrangeView in arrangeViews) {
+        for(JLArrangeView *arrangeView in arrangeViews) {
             [self.originOfArrangeView addObject:[NSValue valueWithCGPoint:arrangeView.frame.origin]];
         }
         
@@ -119,27 +141,48 @@
         }
         
         // add gesture recognizer
-        for(UIView *arrangeView in arrangeViews) {
-            UILongPressGestureRecognizer *longGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(arrangeViewDidMove:)];
+        for(JLArrangeView *arrangeView in arrangeViews) {
+            UILongPressGestureRecognizer *longGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(arrangeViewDidReceiveLongPressGesture:)];
             [arrangeView addGestureRecognizer:longGestureRecognizer];
+            
+            UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(arrangeViewDidReceivePanGesture:)];
+            [arrangeView addGestureRecognizer:panGestureRecognizer];
         }
     }
 }
 
+
 #pragma mark - private methods
 
-- (void)animateStartForView:(UIView *)arrangeView
+- (BOOL)isValidateArray:(NSArray *)array
 {
-    arrangeView.transform = CGAffineTransformMakeScale(1.1, 1.1);
-    arrangeView.alpha = 0.5;
+    for (id obj in array) {
+        if(![[obj class] isSubclassOfClass:[JLArrangeView class]])
+            return NO;
+    }
+    return YES;
 }
 
-- (void)animateFinishForView:(UIView *)arrangeView
+- (void)startSelectAnimation:(JLArrangeView *)arrangeView
 {
-    arrangeView.transform = CGAffineTransformMakeScale(1.0, 1.0);
-    arrangeView.alpha = 1.0;
+    arrangeView.highlightedForDrag = YES;
 }
-
+- (void)stopSelectAnimation:(JLArrangeView *)arrangeView
+{
+    arrangeView.highlightedForDrag = NO;
+}
+- (void)startShakeAnimation
+{
+    for(JLArrangeView *arrangeView in self.arrangeViews) {
+        arrangeView.shakeMode = YES;
+    }
+}
+- (void)stopShakeAnimation
+{
+    for(JLArrangeView *arrangeView in self.arrangeViews) {
+        arrangeView.shakeMode = NO;
+    }
+}
 - (NSInteger)indexForView:(UIView *)arrangeView
 {
     CGFloat centerX = arrangeView.frame.origin.x + arrangeView.frame.size.width * 0.5;
@@ -153,7 +196,6 @@
             break;
         }
     }
-    
     return index;
 }
 
@@ -162,7 +204,7 @@
     if(fromIndex == toIndex) return;
     
     // move data
-    UIView *arrangeView = self.arrangeViews[fromIndex];
+    JLArrangeView *arrangeView = self.arrangeViews[fromIndex];
     [self.arrangeViews removeObjectAtIndex:fromIndex];
     if(toIndex < self.arrangeViews.count) {
         [self.arrangeViews insertObject:arrangeView atIndex:toIndex];
@@ -195,7 +237,7 @@
                      completion:nil];
 }
 
-- (BOOL)wasArrangeViewMoved
+- (BOOL)isArrangeViewMoved
 {
     BOOL result = NO;
     
@@ -217,24 +259,38 @@
 
 #pragma mark - event
 
-- (void)arrangeViewDidMove:(UILongPressGestureRecognizer *)longGestureRecognizer
+- (void)arrangeViewDidReceivePanGesture:(UIPanGestureRecognizer *)gestureRecognizer
 {
-    UIView *arrangeView = longGestureRecognizer.view;
+    NSLog(@"pan : %@", gestureRecognizer);
+    if(self.isEditMode) {
+        [self arrangeViewDidMove:gestureRecognizer];
+    }
+}
+- (void)arrangeViewDidReceiveLongPressGesture:(UILongPressGestureRecognizer *)gestureRecognizer
+{
+    self.editMode = YES;
+    [self arrangeViewDidMove:gestureRecognizer];
+}
+
+- (void)arrangeViewDidMove:(UIGestureRecognizer *)gestureRecognizer
+{
+    JLArrangeView *arrangeView = (JLArrangeView *)gestureRecognizer.view;
     NSInteger index = [self indexForView:arrangeView];
     
-    switch (longGestureRecognizer.state) {
+    switch (gestureRecognizer.state) {
         case UIGestureRecognizerStateBegan:
         {
             [arrangeView.superview bringSubviewToFront:arrangeView];
-            [self animateStartForView:arrangeView];
+            [self startSelectAnimation:arrangeView];
             _startIndex = index;
             _currentIndex = index;
+            
             break;
         }
         case UIGestureRecognizerStateChanged:
         {
             // move view
-            CGPoint touchLocation = [longGestureRecognizer locationInView:arrangeView.superview];
+            CGPoint touchLocation = [gestureRecognizer locationInView:arrangeView.superview];
             CGPoint p = arrangeView.center;
             p.x = touchLocation.x;
             arrangeView.center = p;
@@ -250,11 +306,11 @@
         case UIGestureRecognizerStateEnded:
         case UIGestureRecognizerStateCancelled:
         {
-            [self animateFinishForView:arrangeView];
+            [self stopSelectAnimation:arrangeView];
             [self snapViewsWithCurrentView:nil];
             
             // 순서 변경이 되었으면 delegate에 통보하고, 판별 기준값(self.arrangeViewsOriginal)을 리셋한다.
-            if([self wasArrangeViewMoved]) {
+            if([self isArrangeViewMoved]) {
                 [self.delegate arrangeControllerDidRearrangeViews:self.arrangeViews
                                                     originalViews:self.arrangeViewsOriginal
                                                         fromIndex:_startIndex

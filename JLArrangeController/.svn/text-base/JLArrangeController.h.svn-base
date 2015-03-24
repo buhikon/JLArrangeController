@@ -23,12 +23,18 @@
 
 @protocol JLArrangeControllerDelegate
 
+- (void)arrangeControllerDidStartDrag;
+- (void)arrangeControllerDidFinishDrag;
+
 - (void)arrangeControllerDidRearrangeViews:(NSArray *)rearrangedViews
                              originalViews:(NSArray *)originalViews
                                  fromIndex:(NSInteger)fromIndex
                                    toIndex:(NSInteger)toIndex;
 
+
 @end
+
+
 
 
 @interface JLArrangeController : NSObject
